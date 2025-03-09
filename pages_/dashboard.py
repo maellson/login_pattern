@@ -9,7 +9,7 @@ def dashboard():
         st.warning("Você não está logado. Por favor, vá para o menu de login.")
         return
 
-    st.title("Dashboard")
+    st.header("Dashboard", divider="violet")
 
     # Botão de logout
     if st.button("Logout"):

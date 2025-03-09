@@ -8,7 +8,9 @@ from pages_.configuracao import configurar
 from utils.utils import require_login
 
 # Configuração da página
-st.set_page_config(page_title="Login Center", layout="wide")
+st.set_page_config(page_title="Login Center",
+                   page_icon="favicon.png", layout="wide")
+
 
 # Inicializar estado de sessão para controle de autenticação
 if "logged_in" not in st.session_state:
@@ -31,7 +33,6 @@ with st.sidebar:
 # Roteamento de páginas
 if menu_option == "Home":
     # require_login("Você precisa estar logado para acessar o Dashboard.")
-    st.title("Chatbot")
     # Home já exibe o Chatbot, sem verificação de login
     chatbot()
 
@@ -48,14 +49,12 @@ elif menu_option == "Área Administrativa":
     # Verifica se o usuário está logado para acessar área restrita
     require_login(
         "Você precisa estar logado para acessar a área administrativa.")
-    st.title("Área Administrativa")
-    st.write("Conteúdo exclusivo para a área administrativa.")
+    # st.title("Área Administrativa")
     administrar()
 
 
 elif menu_option == "Configuração":
     require_login("Você precisa estar logado para acessar a configuracao.")
-    st.title("Configuracao de Pagina")
     # Verifica se o usuário está logado usando função do utils require_login
     # require_login("Você precisa estar logado para acessar o Dashboard.")
     configurar()

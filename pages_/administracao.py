@@ -5,8 +5,16 @@ from controllers.crud_controller import register_user, remove_user, get_Users
 def administrar():
     if st.session_state["user"].get("role") == "superadmin":
         # Formulário de Registro
-        st.markdown("---")
-        st.subheader("Registrar-se")
+        # st.markdown("---")
+        st.header("Registrar-se", divider="violet")  # rainbow)
+        st.write("Conteúdo exclusivo para superadmins.")
+
+        # Botão de logout
+        if st.button("Logout"):
+            st.session_state["logged_in"] = False
+            st.rerun()
+
+        # Formulário de Registro
         with st.form(key="register_form"):
             name = st.text_input("Nome")
             reg_username = st.text_input("Username", key="reg_username")
@@ -26,8 +34,7 @@ def administrar():
                 st.error(resultado["message"])
 
          # Formulário de Remoção de Usuário
-        st.markdown("---")
-        st.subheader("Remover Usuário")
+        st.header("Remover Usuário", divider="violet")
         with st.form(key="remove_form"):
             response = get_Users(st.session_state["user"])
             if response["success"]:
